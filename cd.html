@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    background-color: linen;
+}
+h1 {
+    color: maroon;
+	text-align: center;
+	font-size: 40px;
+} 
+h3 {
+    color: maroon;
+	text-align: center;
+	font-size: 30px;
+} 
+p {
+    color: maroon;
+	text-align: center;
+	font-size: 80px;
+} 
+</style>
+</head>
+<body onload="percentofshift()">
+<h1>Countdown!!!!1!!!</h1>
+<h3>Percentage of the workday left:
+<p id="daycountdown">Enable some Javascript will ya?</p></h3> <!--display the results -->
+<p id="tod"></p>
+
+<script>
+function percentofshift() {
+    var midnight = new Date();
+    midnight.setHours( 21 );
+    midnight.setMinutes( 0 );
+    midnight.setSeconds( 0 );
+    midnight.setMilliseconds( 0 );
+//	var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+	var until = ( midnight.getTime() - new Date().getTime() );
+	var total = 39600000; //total number of milliseconds in shift including lunch
+	var percentage = (until / total * 100) ;
+	var percentage = Math.round(percentage * 100) / 100; //rounding to 2 decimal places
+	if ( percentage > 100 ) {document.getElementById("daycountdown").innerHTML = "The day hasn't started. Go Home! Drive Safe!";}
+		else if ( percentage < 0 ) {document.getElementById("daycountdown").innerHTML = "The day is over. Go Home! Drive Safe!";}
+		else if ( midnight.getDay() == 1) {document.getElementById("daycountdown").innerHTML = "Today is Monday. You're supposed to be home";}
+		else if ( midnight.getDay() == 2) {document.getElementById("daycountdown").innerHTML = "Today is Tuesday. You're supposed to be home";}
+		else if ( midnight.getDay() == 3) {document.getElementById("daycountdown").innerHTML = "Today is Wednesday. You're supposed to be home";}
+		else {	document.getElementById("daycountdown").innerHTML = percentage;}
+
+	var t = setTimeout(function(){percentofshift()},1000);
+	}
+</script>
+</body>
+</html>
